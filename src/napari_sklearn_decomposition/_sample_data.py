@@ -8,8 +8,10 @@ Replace code below according to your needs.
 """
 from __future__ import annotations
 
+from napari.types import LayerDataTuple
 
-def faces_sample():
+
+def faces_sample() -> LayerDataTuple:
     from numpy.random import RandomState
     from sklearn.datasets import fetch_olivetti_faces
 
