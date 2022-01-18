@@ -7,10 +7,8 @@ see: https://napari.org/plugins/stable/npe2_manifest_specification.html
 Replace code below according to your needs.
 """
 import napari
-import numpy as np
-from magicgui import magic_factory, magicgui
+from magicgui import magic_factory
 from napari import Viewer
-from qtpy.QtWidgets import QComboBox, QPushButton, QSpinBox, QVBoxLayout, QWidget
 
 
 def linearize_image(image):
@@ -81,7 +79,8 @@ def on_create(new_widget):
 
         # do whatever you need to create the widget, or look it up from some map
         # NOTE! consider the lifetime of the widget you are looking up and adding here.
-        # you may wish to create it each time with `magicgui(some_function)` (see pattern below for tips)
+        # you may wish to create it each time with `magicgui(some_function)`
+        # (see pattern below for tips)
 
         print(new_choice)
         # or you may wish to use a `magic_factory` instead
