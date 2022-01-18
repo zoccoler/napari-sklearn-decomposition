@@ -6,23 +6,12 @@ contributions:
       python_name: napari_sklearn_decomposition._sample_data:faces_sample
       title: Load faces data from sklearn 
     - id: napari-sklearn-decomposition.make_qwidget
-      python_name: napari_sklearn_decomposition._widget:ExampleQWidget
+      python_name: napari_sklearn_decomposition._widget:DecompositionQWidget
       title: Make example QWidget
-    - id: napari-sklearn-decomposition.make_magic_widget
-      python_name: napari_sklearn_decomposition._widget:example_magic_widget
-      title: Make example magic widget
-    - id: napari-sklearn-decomposition.make_func_widget
-      python_name: napari_sklearn_decomposition._widget:example_function_widget
-      title: Make example function widget   
   sample_data:
     - command: napari-sklearn-decomposition.faces_sample
       display_name: Olivetti Faces
       key: faces_sample
   widgets:
     - command: napari-sklearn-decomposition.make_qwidget
-      display_name: Example QWidget
-    - command: napari-sklearn-decomposition.make_magic_widget
-      display_name: Example Magic Widget
-    - command: napari-sklearn-decomposition.make_func_widget
-      autogenerate: true
-      display_name: Example Function Widget 
+      display_name: Decomposition QWidget
