@@ -8,7 +8,6 @@ Replace code below according to your needs.
 """
 import napari
 from magicgui import magic_factory
-from napari import Viewer
 
 
 def linearize_image(image):
