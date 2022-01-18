@@ -17,6 +17,9 @@ def linearize_image(image):
     image_lin = image.reshape(shape[0], shape[1]*shape[2])
     return(image_lin, shape)
 
+def image_reshape(image, n_components, shape):
+    return(image.reshape((n_components, shape[1], shape[2])))
+
 @magic_factory()
 def PCA(image: 'napari.types.ImageData', n_components: int, whiten:bool=True, svd_solver:str='auto') -> 'napari.types.ImageData':
     from sklearn.decomposition import PCA
@@ -24,21 +27,34 @@ def PCA(image: 'napari.types.ImageData', n_components: int, whiten:bool=True, sv
     image, shape = linearize_image(image)
     pca = PCA(n_components=n_components)
     pca.fit(image)
-    output_image = pca.components_.reshape((n_components, shape[1], shape[2]))
+    output_image = image_reshape(pca.components_, n_components, shape)
     print(output_image.shape)
     return(output_image)
 
 @magic_factory()
-def NMF(n_components: int, init:str="nndsvda", tol:float=5e-3):
+def FastICA(image: 'napari.types.ImageData', n_components: int, whiten:bool=True) -> 'napari.types.ImageData':
+    from sklearn.decomposition import FastICA
+
+    image, shape = linearize_image(image)
+    ica = FastICA(n_components=n_components)
+    ica.fit(image)
+    output_image = image_reshape(ica.components_, n_components, shape)
+    print(output_image.shape)
+    return(output_image)
+
+@magic_factory()
+def NMF(image: 'napari.types.ImageData', n_components: int, init:str="warn", tol:float=5e-3):
     from sklearn.decomposition import NMF
-    image = np.arange(75).reshape(3,25)
+    image, shape = linearize_image(image)
     nmf = NMF(n_components=n_components, init=init, tol=tol)
     nmf.fit(image)
-    return(nmf.noise_variance_.reshape(1, -1))
+    output_image = image_reshape(nmf.components_, n_components, shape)
+    print(output_image.shape)
+    return(output_image)
 
 def on_create(new_widget):
     # print('viewer = ', viewer)
-    mapping = {'PCA': PCA, 'NMF' : NMF}
+    mapping = {'PCA': PCA, 'NMF' : NMF, 'FastICA': FastICA}
     print('new_wid', new_widget)
     # new_widget.
     @new_widget.choice.changed.connect
