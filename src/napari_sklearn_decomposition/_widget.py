@@ -24,7 +24,7 @@ class DecompositionQWidget(QWidget):
 
         # add QComboBox to the layout
         self.decomposition_type = QComboBox()
-        self.decomposition_type.addItems(["PCA", "ICA", "FA", "NMF"])
+        self.decomposition_type.addItems(["PCA", "FICA", "NMF"])
         self.layout().addWidget(self.decomposition_type)
 
         # add button connection
