@@ -56,6 +56,7 @@ def on_create(new_widget):
         if len(new_widget)>1:
             new_widget.pop()
         new_widget.append(chosen_widget)
+    _on_choice_changed('PCA')
 
 @magic_factory(choice={'choices': ['PCA', 'NMF', 'FastICA']}, call_button=False,
                widget_init=on_create)
