@@ -35,6 +35,8 @@ def PCA(
     pca.fit(image)
     output_image = image_reshape(pca.components_, n_components, shape)
     print(output_image.shape)
+    viewer = napari.current_viewer()
+    viewer.dims.set_point(0, 0)
     return output_image
 
 
@@ -49,6 +51,8 @@ def FastICA(
     ica.fit(image)
     output_image = image_reshape(ica.components_, n_components, shape)
     print(output_image.shape)
+    viewer = napari.current_viewer()
+    viewer.dims.set_point(0, 0)
     return output_image
 
 
@@ -66,6 +70,8 @@ def NMF(
     nmf.fit(image)
     output_image = image_reshape(nmf.components_, n_components, shape)
     print(output_image.shape)
+    viewer = napari.current_viewer()
+    viewer.dims.set_point(0, 0)
     return output_image
 
 
@@ -99,7 +105,7 @@ def on_create(new_widget):
     call_button=False,
     widget_init=on_create,
 )
-def decomposition(choice: str, viewer: Viewer):
+def decomposition(choice: str):
 
     # print('viewer = ', viewer)
     pass
