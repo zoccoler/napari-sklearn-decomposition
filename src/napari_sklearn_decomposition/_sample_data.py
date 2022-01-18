@@ -15,6 +15,6 @@ def faces_sample():
 
     rng = RandomState(0)
 
-    faces, _ = fetch_olivetti_faces(return_X_y=True, shuffle=True, random_state=rng)
+    faces = fetch_olivetti_faces(return_X_y=False, shuffle=True, random_state=rng)
 
-    return [(faces, {"name": "Olivetti Faces"})]
+    return [(faces.images, {"name": "Olivetti Faces"})]
