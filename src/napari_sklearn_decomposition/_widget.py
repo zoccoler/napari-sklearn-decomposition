@@ -6,7 +6,7 @@ see: https://napari.org/plugins/stable/npe2_manifest_specification.html
 
 Replace code below according to your needs.
 """
-from qtpy.QtWidgets import QWidget, QHBoxLayout, QPushButton, QComboBox
+from qtpy.QtWidgets import QWidget, QVBoxLayout, QPushButton, QComboBox, QSpinBox
 from magicgui import magic_factory
 
 
@@ -20,11 +20,7 @@ class DecompositionQWidget(QWidget):
         super().__init__()
         self.viewer = napari_viewer
 
-        btn = QPushButton("Run decomposition")
-        btn.clicked.connect(self._on_click)
-
-        self.setLayout(QHBoxLayout())
-        self.layout().addWidget(btn)
+        self.setLayout(QVBoxLayout())
 
         # add QComboBox to the layout
         self.decomposition_type = QComboBox()
@@ -34,6 +30,13 @@ class DecompositionQWidget(QWidget):
         # add button connection
 
         # add QSpinBox for number of components
+        self.decomposition_n_components = QSpinBox()
+        self.layout().addWidget(self.decomposition_n_components)
+
+        # add button to the layout
+        btn = QPushButton("Run")
+        self.layout().addWidget(btn)
+        btn.clicked.connect(self._on_click)
 
         # add other options with display in/out
 
