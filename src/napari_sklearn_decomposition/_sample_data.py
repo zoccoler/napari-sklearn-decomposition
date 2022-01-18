@@ -7,9 +7,14 @@ see: https://napari.org/plugins/stable/npe2_manifest_specification.html
 Replace code below according to your needs.
 """
 from __future__ import annotations
-import numpy
 
 
-def make_sample_data():
-    """Generates an image"""
-    return numpy.random.rand(512, 512)
+def faces_sample():
+    from numpy.random import RandomState
+    from sklearn.datasets import fetch_olivetti_faces
+
+    rng = RandomState(0)
+
+    faces, _ = fetch_olivetti_faces(return_X_y=True, shuffle=True, random_state=rng)
+
+    return [(faces, {"name": "Olivetti Faces"})]
