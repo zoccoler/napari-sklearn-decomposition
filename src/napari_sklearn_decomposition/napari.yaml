@@ -6,7 +6,7 @@ contributions:
       python_name: napari_sklearn_decomposition._sample_data:faces_sample
       title: Load faces data from sklearn
     - id: napari-sklearn-decomposition.make_qwidget
-      python_name: napari_sklearn_decomposition._widget:widget_factory
+      python_name: napari_sklearn_decomposition._widget:decomposition
       title: Make example QWidget
   sample_data:
     - command: napari-sklearn-decomposition.faces_sample

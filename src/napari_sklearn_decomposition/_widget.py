@@ -26,21 +26,24 @@ def NMF(n_components: int, init:str="nndsvda", tol:float=5e-3):
     nmf.fit(image)
     return(nmf.noise_variance_.reshape(1, -1))
 
-@magic_factory(choice={'choices': ['PCA', 'NMF', 'FastICA']}, call_button=False)
+def on_create(new_widget):
+    @new_widget.choice.changed.connect
+    def _on_choice_changed(new_choice: str):
+        # do whatever you need to create the widget, or look it up from some map
+        # NOTE! consider the lifetime of the widget you are looking up and adding here.
+        # you may wish to create it each time with `magicgui(some_function)` (see pattern below for tips)
+
+        print(new_choice)
+        # or you may wish to use a `magic_factory` instead
+        # factory = mapping[new_choice]
+        # new_widget = factory()
+        # decomposition.pop()
+        # decomposition.append(new_widget)
+
+@magic_factory(choice={'choices': ['PCA', 'NMF', 'FastICA']}, call_button=False,
+               widget_init=on_create)
 def decomposition(choice: str):
     pass
 
 # mapping = {'PCA': PCA}
 
-@decomposition.choice.changed.connect
-def _on_choice_changed(new_choice: str):
-    # do whatever you need to create the widget, or look it up from some map
-    # NOTE! consider the lifetime of the widget you are looking up and adding here.
-    # you may wish to create it each time with `magicgui(some_function)` (see pattern below for tips)
-
-    print(new_choice)
-    # or you may wish to use a `magic_factory` instead
-    # factory = mapping[new_choice]
-    # new_widget = factory()
-    # decomposition.pop()
-    # decomposition.append(new_widget)
