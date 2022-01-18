@@ -58,9 +58,9 @@ def FastICA(
 def NMF(
     image: "napari.types.ImageData",
     n_components: int = 6,
-    init: str = "warn",
+    init: str = "nndsvda",
     tol: float = 5e-3,
-):
+) -> "napari.types.ImageData":
     from sklearn.decomposition import NMF
 
     image, shape = linearize_image(image)
