@@ -94,6 +94,8 @@ def on_create(new_widget):
         if len(new_widget) > 1:
             new_widget.pop()
         new_widget.append(chosen_widget)
+        # reset_choices from:
+        # https://github.com/pattonw/napari-affinities/blob/7d9eab9100daf607ce7351f8717bff37ad71acf0/src/napari_affinities/widget.py#L61
         chosen_widget.reset_choices()
         viewer = napari.current_viewer()
         viewer.layers.events.inserted.connect(chosen_widget.reset_choices)
