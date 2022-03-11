@@ -75,7 +75,6 @@ def NMF(
 
 
 def on_create(new_widget):
-    # print('viewer = ', viewer)
     mapping = {"PCA": PCA, "NMF": NMF, "FastICA": FastICA}
     print("new_wid", new_widget)
     # new_widget.
@@ -95,7 +94,9 @@ def on_create(new_widget):
         if len(new_widget) > 1:
             new_widget.pop()
         new_widget.append(chosen_widget)
-
+        chosen_widget.reset_choices()
+        viewer = napari.current_viewer()
+        viewer.layers.events.inserted.connect(chosen_widget.reset_choices)
     _on_choice_changed("PCA")
 
 
