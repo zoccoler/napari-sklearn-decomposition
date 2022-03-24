@@ -15,7 +15,7 @@ At present, the following algorithms are implemented:
 2. [NMF](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html)
 3. [FastICA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.FastICA.html)
 
-If you'd like another algorithm implemented, please [file an issue]!
+If you'd like another algorithm implemented, please [file an issue]. For more information about signal decomposition and these methods, see [the sklearn User Guide](https://scikit-learn.org/stable/modules/decomposition.html). 
 
 ----------------------------------
 
