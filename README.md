@@ -1,13 +1,21 @@
 # napari-sklearn-decomposition
-
+<!-- Commenting these out because they dont work
 [![License](https://img.shields.io/pypi/l/napari-sklearn-decomposition.svg?color=green)](https://github.com/jdeschamps/napari-sklearn-decomposition/raw/main/LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/napari-sklearn-decomposition.svg?color=green)](https://pypi.org/project/napari-sklearn-decomposition)
 [![Python Version](https://img.shields.io/pypi/pyversions/napari-sklearn-decomposition.svg?color=green)](https://python.org)
 [![tests](https://github.com/jdeschamps/napari-sklearn-decomposition/workflows/tests/badge.svg)](https://github.com/jdeschamps/napari-sklearn-decomposition/actions)
 [![codecov](https://codecov.io/gh/jdeschamps/napari-sklearn-decomposition/branch/main/graph/badge.svg)](https://codecov.io/gh/jdeschamps/napari-sklearn-decomposition)
 [![napari hub](https://img.shields.io/endpoint?url=https://api.napari-hub.org/shields/napari-sklearn-decomposition)](https://napari-hub.org/plugins/napari-sklearn-decomposition)
+-->
 
-A simple plugin to use with napari
+A simple plugin implementing selected matrix decomposition algorithms from `sklearn.decomposition` within napari. 
+Also includes the Olivetti sample data, for more info see [the sklearn example](https://scikit-learn.org/stable/auto_examples/decomposition/plot_faces_decomposition.html#sphx-glr-auto-examples-decomposition-plot-faces-decomposition-py). 
+At present, the following algorithms are implemented:
+1. [PCA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA)
+2. [NMF](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html#sklearn.decomposition.NMF)
+3. [FastICA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.FastICA.html#sklearn.decomposition.FastICA)
+
+If you'd like another algorithm implemented, please [file an issue]!
 
 ----------------------------------
 
@@ -23,11 +31,7 @@ https://napari.org/plugins/stable/index.html
 
 ## Installation
 
-You can install `napari-sklearn-decomposition` via [pip]:
-
-    pip install napari-sklearn-decomposition
-
-
+This plugin is experimental and pre-alpha. At the moment you can only install from this repository.
 
 To install latest development version :
 
