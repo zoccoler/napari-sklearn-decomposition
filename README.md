@@ -11,9 +11,9 @@
 A simple plugin implementing selected matrix decomposition algorithms from [`sklearn.decomposition`](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.decomposition) within napari. 
 Also includes the Olivetti sample data, for more info see [the sklearn example](https://scikit-learn.org/stable/auto_examples/decomposition/plot_faces_decomposition.html#sphx-glr-auto-examples-decomposition-plot-faces-decomposition-py). 
 At present, the following algorithms are implemented:
-1. [PCA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA)
-2. [NMF](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html#sklearn.decomposition.NMF)
-3. [FastICA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.FastICA.html#sklearn.decomposition.FastICA)
+1. [PCA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html)
+2. [NMF](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html)
+3. [FastICA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.FastICA.html)
 
 If you'd like another algorithm implemented, please [file an issue]!
 
