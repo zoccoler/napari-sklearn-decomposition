@@ -8,7 +8,7 @@
 [![napari hub](https://img.shields.io/endpoint?url=https://api.napari-hub.org/shields/napari-sklearn-decomposition)](https://napari-hub.org/plugins/napari-sklearn-decomposition)
 -->
 
-A simple plugin implementing selected matrix decomposition algorithms from `sklearn.decomposition` within napari. 
+A simple plugin implementing selected matrix decomposition algorithms from [`sklearn.decomposition`](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.decomposition) within napari. 
 Also includes the Olivetti sample data, for more info see [the sklearn example](https://scikit-learn.org/stable/auto_examples/decomposition/plot_faces_decomposition.html#sphx-glr-auto-examples-decomposition-plot-faces-decomposition-py). 
 At present, the following algorithms are implemented:
 1. [PCA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA)
