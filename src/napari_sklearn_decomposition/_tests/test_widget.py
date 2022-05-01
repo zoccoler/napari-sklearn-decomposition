@@ -8,6 +8,14 @@ from napari_sklearn_decomposition import decomposition
 from napari_sklearn_decomposition._widget import NMF, PCA, FastICA
 
 
+def test_plugin_widget_added(make_napari_viewer: Callable[..., napari.Viewer]):
+    viewer = make_napari_viewer()
+    viewer.window.add_plugin_dock_widget(
+        plugin_name="napari-sklearn-decomposition", widget_name="Decomposition Widget"
+    )
+    assert len(viewer.window._dock_widgets) == 1
+
+
 def test_widget_added(make_napari_viewer: Callable[..., napari.Viewer]) -> None:
     # Make a viewer with an image
     viewer = make_napari_viewer()
