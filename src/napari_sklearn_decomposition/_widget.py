@@ -6,17 +6,23 @@ see: https://napari.org/plugins/stable/npe2_manifest_specification.html
 
 Replace code below according to your needs.
 """
+from typing import TYPE_CHECKING
+
 import napari
+import numpy as np
 from magicgui import magic_factory
 
+if TYPE_CHECKING:
+    import napari.types
 
-def linearize_image(image):
+
+def linearize_image(image: np.ndarray) -> tuple:
     shape = image.shape
     image_lin = image.reshape(shape[0], shape[1] * shape[2])
     return (image_lin, shape)
 
 
-def image_reshape(image, n_components, shape):
+def image_reshape(image: np.ndarray, n_components: int, shape: tuple) -> np.ndarray:
     return image.reshape((n_components, shape[1], shape[2]))
 
 
@@ -26,7 +32,7 @@ def PCA(
     n_components: int = 6,
     whiten: bool = True,
     svd_solver: str = "auto",
-) -> "napari.types.ImageData":
+) -> "napari.types.LayerDataTuple":
     from sklearn.decomposition import PCA
 
     image, shape = linearize_image(image)
@@ -36,13 +42,13 @@ def PCA(
     print(output_image.shape)
     viewer = napari.current_viewer()
     viewer.dims.set_point(0, 0)
-    return output_image
+    return (output_image, {"name": "PCA Eigenvectors", "colormap": "PiYG"}, "image")
 
 
 @magic_factory()
 def FastICA(
     image: "napari.types.ImageData", n_components: int = 6, whiten: bool = True
-) -> "napari.types.ImageData":
+) -> "napari.types.LayerDataTuple":
     from sklearn.decomposition import FastICA
 
     image, shape = linearize_image(image)
@@ -52,7 +58,11 @@ def FastICA(
     print(output_image.shape)
     viewer = napari.current_viewer()
     viewer.dims.set_point(0, 0)
-    return output_image
+    return (
+        output_image,
+        {"name": "Independent Components", "colormap": "PiYG"},
+        "image",
+    )
 
 
 @magic_factory()
@@ -61,7 +71,7 @@ def NMF(
     n_components: int = 6,
     init: str = "nndsvda",
     tol: float = 5e-3,
-) -> "napari.types.ImageData":
+) -> "napari.types.LayerDataTuple":
     from sklearn.decomposition import NMF
 
     image, shape = linearize_image(image)
@@ -71,13 +81,18 @@ def NMF(
     print(output_image.shape)
     viewer = napari.current_viewer()
     viewer.dims.set_point(0, 0)
-    return output_image
+    return (
+        output_image,
+        {"name": "Non-negative Components", "colormap": "viridis"},
+        "image",
+    )
 
 
 def on_create(new_widget):
     mapping = {"PCA": PCA, "NMF": NMF, "FastICA": FastICA}
     print("new_wid", new_widget)
     # new_widget.
+
     @new_widget.choice.changed.connect
     def _on_choice_changed(new_choice: str):
 
@@ -99,6 +114,7 @@ def on_create(new_widget):
         chosen_widget.reset_choices()
         viewer = napari.current_viewer()
         viewer.layers.events.inserted.connect(chosen_widget.reset_choices)
+
     _on_choice_changed("PCA")
 
 
