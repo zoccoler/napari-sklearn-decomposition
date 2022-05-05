@@ -7,6 +7,9 @@ import pytest
 from napari_sklearn_decomposition import decomposition
 from napari_sklearn_decomposition._widget import NMF, PCA, FastICA
 
+RESULT_NAMES = {"PCA": "PCA Eigenvectors", "FastICA": "Independent Components", "NMF": "Non-negative Components"}
+RESULT_COLORMAPS = {"PCA": "PiYG", "FastICA": "PiYG", "NMF": "viridis"}
+
 
 def test_plugin_widget_added(make_napari_viewer: Callable[..., napari.Viewer]):
     viewer = make_napari_viewer()
@@ -56,10 +59,10 @@ def test_decompositions(
     # Check a new image was added
     assert len(viewer.layers) == 2
     # Check that the name & shape of the new layer is correct
-    assert viewer.layers[-1].name == f"{method.__name__} result"
+    assert viewer.layers[-1].name == RESULT_NAMES[method.__name__]
     assert viewer.layers[-1].data.shape == (6, 50, 50)
     # Check that the colormap is correct
-    # assert viewer.layers[-1].colormap.name == "PiYG"
+    assert viewer.layers[-1].colormap.name == RESULT_COLORMAPS[method.__name__]
 
 
 # # make_napari_viewer is a pytest fixture that returns a napari viewer object
