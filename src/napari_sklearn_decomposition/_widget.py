@@ -51,7 +51,7 @@ def PCA_napari(
     pca = PCA(n_components=n_components)
     pca.fit(image_lin)
     output_image = image_reshape(pca.components_, n_components, shape)
-    output_labels = filters_to_masks(output_image)
+    output_labels, _ = filters_to_masks(output_image)
     # IF TIME SERIES
     # Time signals are just average over time using labels
     time_signals = np.asarray([np.mean(image[:, output_labels[i].astype(bool)], axis=1) for i in range(n_components)]).T
@@ -107,7 +107,7 @@ def FastICA_napari(
     components = components[skew_sort_indices]
     
     output_image = image_reshape(components, n_components, shape)
-    output_labels = filters_to_masks(output_image)
+    output_labels, _ = filters_to_masks(output_image)
     # IF TIME SERIES
     # Time signals are just average over time using labels
     time_signals = np.asarray([np.mean(image[:, output_labels[i].astype(bool)], axis=1) for i in range(n_components)]).T
@@ -158,7 +158,7 @@ def NMF_napari(
     components = components[skew_sort_indices]
     
     output_image = image_reshape(components, n_components, shape)
-    output_labels = filters_to_masks(output_image)
+    output_labels, _ = filters_to_masks(output_image)
     # IF TIME SERIES
     # Time signals are just average over time using labels
     time_signals = np.asarray([np.mean(image[:, output_labels[i].astype(bool)], axis=1) for i in range(n_components)]).T
