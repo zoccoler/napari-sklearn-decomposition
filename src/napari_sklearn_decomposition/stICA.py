@@ -99,7 +99,7 @@ def stICA(image, mu, n_components=None, as_labels = False, random_state=None, **
         time_signals = S_[n_px:]
     elif mu==1: # Only time was considered
         time_signals = S_
-    if time_signals and as_labels:
+    if time_signals is not None and as_labels:
         time_signals = np.negative(time_signals, where = inverted_flag_list)
     
     return space_filters, time_signals
