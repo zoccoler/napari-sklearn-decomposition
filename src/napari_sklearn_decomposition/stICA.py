@@ -93,10 +93,13 @@ def stICA(image, mu, n_components=None, as_labels = False, random_state=None, **
         space_filters = S_[:n_px].T
         space_filters = space_filters.reshape(tuple([n_components, *single_image_shape]), order = 'F')
         if as_labels == True:
-            space_filters = filters_to_masks(space_filters)
+            space_filters, inverted_flag_list = filters_to_masks(space_filters)
+            
     if mu>0 and mu !=1: # Time was also considered
         time_signals = S_[n_px:]
     elif mu==1: # Only time was considered
         time_signals = S_
+    if time_signals and as_labels:
+        time_signals = np.negative(time_signals, where = inverted_flag_list)
     
     return space_filters, time_signals
