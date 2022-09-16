@@ -8,6 +8,10 @@ contributions:
     - id: napari-sklearn-decomposition.make_qwidget
       python_name: napari_sklearn_decomposition._widget:decomposition
       title: Make example QWidget
+      # Plotting
+    - id: napari-sklearn-decomposition.features_lineplot
+      python_name: napari_sklearn_decomposition:FeaturesLinePlotWidget
+      title: Visualize temporal components
   sample_data:
     - command: napari-sklearn-decomposition.faces_sample
       display_name: Olivetti Faces
@@ -15,3 +19,6 @@ contributions:
   widgets:
     - command: napari-sklearn-decomposition.make_qwidget
       display_name: Decomposition Widget
+    # Plotting
+    - command: napari-sklearn-decomposition.features_lineplot
+      display_name: Temporal Components
